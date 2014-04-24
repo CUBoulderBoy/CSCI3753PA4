@@ -1,0 +1,83 @@
+CS3753 (Operating Systems)
+Spring 2014
+University of Colorado Boulder
+Programming Assignment 4
+A FUSE Encrypted File System
+Public Code
+
+Written by: Christopher Jordan with help from Jeremy Granger
+Alex Beal, and Robert Wethman
+
+Adapted code from:
+Andy Sayler - 2012
+<www.andysayler.com>
+
+Inspired by work from Chris Wailes - 2010
+<chris.wailes@gmail.com>
+
+With help from:
+Junho Ahn - 2012
+
+Updated by Mike Gartrell - 2014
+
+Various files adopted from other exiting work.
+See file comments for specific details and references.
+
+---Dependencies (all included in cu-cs-csci3753 package)---
+fuse-utils
+openssl
+attr
+attr-dev
+libfuse-dev
+libssl1.0.0 or libssl0.9.8
+libssl-dev
+
+Note: To use extended attributes (xattr) on EXT filesystems,
+      you must add the 'user_xattr' mount option to the
+      mount options of any mounts on which you intend to use 
+      extended attributes. Failure to so may result in an error
+      when trying to set, get, or remove xattr values.
+
+---Folders---
+handout - Assignment description and documentation
+
+---Files---
+Makefile         - GNU makefile to build all relevant code
+README           - This file
+pa4-encfs.c      - FUSE mirrored filesystem with encryption
+aes-crypt.h      - Basic AES file encryption library interface
+aes-crypt.c      - Basic AES file encryption library implementation
+
+---Executables---
+pa4-encfs        - Mounting executable for specified mirror w/ encryption FUSE filesystem 
+
+---Documentation---
+handout/pa4.pdf             - Assignment Instructions and Tips
+http://youtu.be/VrMi6RaUNDs - Assignment Explanation Video 1
+
+---Examples---
+
+***Building***
+
+Build All:
+ make
+
+Build Fuse Custom File System and Utilities:
+ make pa4-encfs
+
+Clean:
+ make clean
+
+***Custom FUSE Filesystem Examples***
+
+Mount pa4-encfs on existing directory and list (ls) mirrored specified directory
+ ./pa4-encfs <Keyphrase> <Root Directory> <Mount Point>
+ ls <Mount Point>
+
+***You create, read, and write files in this system the same way that you would 
+in a standard file system.  I used vi and sublime text for my editors.
+
+Unmount a FUSE filesystem
+ fusermount -u <Mount Point>
+
+
